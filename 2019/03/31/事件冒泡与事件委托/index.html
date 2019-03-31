@@ -4,8 +4,10 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="测试博客, 香独秀的炫酷博客">
-    <meta name="description" content="hello world用hexo加githubpages搭建的个人博客成功，记录前端学习中的那些坑">
+    <meta name="keywords" content="事件冒泡与事件委托, 香独秀的炫酷博客">
+    <meta name="description" content="在javascript里，事件委托是很重要的一个东西，它可以减少内存消耗，可以为动态创建的元素绑定事件.而事件委托依靠的就是事件冒泡的机制，我先来解释一下事件冒泡.
+
+事件冒泡定义 : 默认情况下，事件使用冒泡事件流。当事件（例如单击事件）">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>测试博客 | 香独秀的炫酷博客</title>
+    <title>事件冒泡与事件委托 | 香独秀的炫酷博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -281,13 +283,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        测试博客
+                        事件冒泡与事件委托
                     </div>
                 </div>
             </div>
@@ -379,8 +381,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/hello-world/" target="_blank">
-                                <span class="chip bg-color">hello world</span>
+                            <a href="/tags/javascript/" target="_blank">
+                                <span class="chip bg-color">javascript</span>
                             </a>
                         
                     </div>
@@ -394,7 +396,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-03-20
+                    2019-03-31
                 </div>
 
                 
@@ -410,7 +412,26 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h1><h2 id="用hexo加githubpages搭建的个人博客成功，记录前端学习中的那些坑"><a href="#用hexo加githubpages搭建的个人博客成功，记录前端学习中的那些坑" class="headerlink" title="用hexo加githubpages搭建的个人博客成功，记录前端学习中的那些坑"></a>用hexo加githubpages搭建的个人博客成功，记录前端学习中的那些坑</h2>
+                <p>在javascript里，事件委托是很重要的一个东西，它可以减少内存消耗，可以为动态创建的元素绑定事件.而事件委托依靠的就是事件冒泡的机制，我先来解释一下事件冒泡.</p>
+<blockquote>
+<p><strong>事件冒泡定义</strong> : 默认情况下，事件使用冒泡事件流。当事件（例如单击事件）在某一DOM元素上被触发时，事件将沿着该节点的各个父结点冒泡穿过整个DOM节点层次。在冒泡过程中的任何时候都可以终止事件的冒泡。如果不停止事件的传播，事件将一直通过DOM冒泡直至到达文档根。</p>
+</blockquote>
+<p>这么说是不是很抽象，其实就像我敲击了一下键盘，我在敲击键盘的同时，我是不是也敲击了这台电脑，我写个例子大家就明白了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">        &lt;title&gt;&lt;/title&gt;</span><br><span class="line">    &lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">    &lt;style type="text/</span>css<span class="string">"&gt;</span></span><br><span class="line"><span class="string">        #box1 &#123; width: 300px; height: 300px; background: blueviolet; &#125;</span></span><br><span class="line"><span class="string">        #box2 &#123; width: 200px; height: 200px; background: aquamarine; &#125;</span></span><br><span class="line"><span class="string">        #box3 &#123; width: 100px; height: 100px; background: tomato; &#125;</span></span><br><span class="line"><span class="string">        div &#123; overflow: hidden; margin: 50px auto; &#125;</span></span><br><span class="line"><span class="string">    &lt;/style&gt;</span></span><br><span class="line"><span class="string">    &lt;body&gt;</span></span><br><span class="line"><span class="string">        &lt;div id="</span>box1<span class="string">"&gt;</span></span><br><span class="line"><span class="string">            &lt;div id="</span>box2<span class="string">"&gt;</span></span><br><span class="line"><span class="string">                &lt;div id="</span>box3<span class="string">"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">            &lt;/div&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">        &lt;script&gt;</span></span><br><span class="line"><span class="string">            function sayBox3() &#123;</span></span><br><span class="line"><span class="string">                console.log('你点了最里面的box');</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            function sayBox2() &#123;</span></span><br><span class="line"><span class="string">                console.log('你点了最中间的box');</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            function sayBox1() &#123;</span></span><br><span class="line"><span class="string">                console.log('你点了最外面的box');</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            document.getElementById('box3').addEventListener('click', sayBox3, false);</span></span><br><span class="line"><span class="string">            document.getElementById('box2').addEventListener('click', sayBox2, false);</span></span><br><span class="line"><span class="string">            document.getElementById('box1').addEventListener('click', sayBox1, false);</span></span><br><span class="line"><span class="string">			//这里点击最里面的box3,box1与box2绑定的click事件也会触发</span></span><br><span class="line"><span class="string">        &lt;/script&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在上面代码中box1嵌套box2,box2嵌套box3，当为三个div都注册了click事件时，点击最里层的box3，事件就会逐层向外传播，从而触发box2与box1的click事件。点击中间的box2时，box1会触发点击事件box3不会。点击box1时便只有它本身会触发click事件.通过上面的例子，应该很容易就理解了事件冒泡</p>
+<p><strong>现在来谈谈事件委托，事件委托又称之为事件代理，我们通过最经典的快递例子来解释：</strong></p>
+<blockquote>
+<p>有三个同事预计会在周一收到快递，为了签收快递，有两种办法：1.三个人在公司门口等快递；2.委托给前台MM代为签收。现实当中，我们大都采用委托的方案（公司也不会容忍那么多员工站在门口就为了等快递）。前台MM收到快递后，她会判断收件人是谁，然后按照收件人的要求签收，甚至代为付款。这种方案还有一个优势，那就是即使公司里来了新员工（不管多少），前台MM也会在收到寄给新员工的快递后核实并代为签收(可以给暂时不存在的节点也绑定上事件)。</p>
+</blockquote>
+<p><strong>将快递的例子转化为dom操作：</strong></p>
+<blockquote>
+<p>现在有一个ul，ul里又有100个li，我想给这100个li都绑定一个点击事件，我们一般可以通过for循环来绑定，但是要是有1000个li呢？ 为了提高效率和速度，所以我们这时可以采用事件委托，只给ul绑定一个事件，根据事件冒泡的规则，只要你点了ul里的每一个li，都会触发ul的绑定事件，我们在ul绑定事件的函数里通过一些判断，就可以给这100li都触发点击事件了。</p>
+</blockquote>
+<p><strong>不多bb上代码</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'ul'</span>)</span><br><span class="line">el.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    event = event ? event : <span class="built_in">window</span>.event</span><br><span class="line">    <span class="keyword">let</span> targetel = event.target		<span class="comment">//先通过事件参数target属性获取当前触发事件的元素</span></span><br><span class="line">    <span class="keyword">if</span>(targetel.nodeName !== <span class="string">'LI'</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>			<span class="comment">//如果触发事件的元素不是li直接return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'我是li，我被点了'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这就是所谓的事件委托，通过监听一个父元素，来给不同的子元素绑定事件，减少监听次数，从而提升速度。</p>
+<p><strong>最后说一点，如果元素被阻止冒泡了，千万别去用事件委托的方式监听事件，因为事件委托的原理是利用事件冒泡，当冒泡被阻止，就无法监听了。</strong></p>
+
             </div>
             <hr>
 
@@ -550,7 +571,7 @@
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">香独秀的炫酷博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/03/20/测试博客/" class="b-link-green">测试博客</a>
+                    <a href="/2019/03/31/事件冒泡与事件委托/" class="b-link-green">事件冒泡与事件委托</a>
                 </p>
             </div>
         </div>
@@ -573,7 +594,8 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/03/31/事件冒泡与事件委托/">
                     <div class="card-image">
@@ -589,9 +611,9 @@
 
 事件冒泡定义 : 默认情况下，事件使用冒泡事件流。当事件（例如单击事件）</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-31
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -600,6 +622,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -615,7 +638,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2019/03/20/测试博客/">
@@ -641,7 +664,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
