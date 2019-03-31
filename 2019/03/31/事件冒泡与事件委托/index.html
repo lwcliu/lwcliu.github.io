@@ -5,9 +5,9 @@
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta name="keywords" content="事件冒泡与事件委托, 香独秀的炫酷博客">
-    <meta name="description" content="在javascript里，事件委托是很重要的一个东西，它可以减少内存消耗，可以为动态创建的元素绑定事件.而事件委托依靠的就是事件冒泡的机制，我先来解释一下事件冒泡.
+    <meta name="description" content="在javascript里，事件委托非常，而事件委托依靠的就是事件冒泡的机制，我先来解释一下事件冒泡.
 
-事件冒泡定义 : 默认情况下，事件使用冒泡事件流。当事件（例如单击事件）">
+事件冒泡定义 : 默认情况下，事件使用冒泡事件流。当事件（例如单击事件）在某一DOM元素上被触发时，事件将沿着该节点的各个父结点冒泡穿过">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -412,7 +412,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>在javascript里，事件委托是很重要的一个东西，它可以减少内存消耗，可以为动态创建的元素绑定事件.而事件委托依靠的就是事件冒泡的机制，我先来解释一下事件冒泡.</p>
+                <p>在javascript里，事件委托非常，而事件委托依靠的就是事件冒泡的机制，我先来解释一下事件冒泡.</p>
 <blockquote>
 <p><strong>事件冒泡定义</strong> : 默认情况下，事件使用冒泡事件流。当事件（例如单击事件）在某一DOM元素上被触发时，事件将沿着该节点的各个父结点冒泡穿过整个DOM节点层次。在冒泡过程中的任何时候都可以终止事件的冒泡。如果不停止事件的传播，事件将一直通过DOM冒泡直至到达文档根。</p>
 </blockquote>
@@ -429,7 +429,7 @@
 </blockquote>
 <p><strong>不多bb上代码</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'ul'</span>)</span><br><span class="line">el.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    event = event ? event : <span class="built_in">window</span>.event</span><br><span class="line">    <span class="keyword">let</span> targetel = event.target		<span class="comment">//先通过事件参数target属性获取当前触发事件的元素</span></span><br><span class="line">    <span class="keyword">if</span>(targetel.nodeName !== <span class="string">'LI'</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>			<span class="comment">//如果触发事件的元素不是li直接return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'我是li，我被点了'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>这就是所谓的事件委托，通过监听一个父元素，来给不同的子元素绑定事件，减少监听次数，从而提升速度。</p>
+<p>这就是所谓的事件委托，通过监听一个父元素，来给不同的子元素绑定事件，减少监听次数，从而提升速度节省内存。并可以为动态创建出的子元素绑定事件</p>
 <p><strong>最后说一点，如果元素被阻止冒泡了，千万别去用事件委托的方式监听事件，因为事件委托的原理是利用事件冒泡，当冒泡被阻止，就无法监听了。</strong></p>
 
             </div>
@@ -607,9 +607,9 @@
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">在javascript里，事件委托是很重要的一个东西，它可以减少内存消耗，可以为动态创建的元素绑定事件.而事件委托依靠的就是事件冒泡的机制，我先来解释一下事件冒泡.
+                    <div class="summary">在javascript里，事件委托非常，而事件委托依靠的就是事件冒泡的机制，我先来解释一下事件冒泡.
 
-事件冒泡定义 : 默认情况下，事件使用冒泡事件流。当事件（例如单击事件）</div>
+事件冒泡定义 : 默认情况下，事件使用冒泡事件流。当事件（例如单击事件）在某一DOM元素上被触发时，事件将沿着该节点的各个父结点冒泡穿过</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-31
